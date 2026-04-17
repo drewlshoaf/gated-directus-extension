@@ -1,0 +1,81 @@
+{
+  "name": "@gated/directus-extension",
+  "version": "0.1.0",
+  "description": "Gated — AI content rights and retrieval control for Directus",
+  "license": "MIT",
+  "type": "module",
+  "directus:extension": {
+    "type": "bundle",
+    "path": {
+      "app": "dist/app.js",
+      "api": "dist/api.js"
+    },
+    "entries": [
+      {
+        "type": "module",
+        "name": "gated-module",
+        "source": "src/module/index.ts"
+      },
+      {
+        "type": "endpoint",
+        "name": "robots",
+        "source": "src/endpoints/robots.endpoint.ts"
+      },
+      {
+        "type": "endpoint",
+        "name": "ai-txt",
+        "source": "src/endpoints/ai-txt.endpoint.ts"
+      },
+      {
+        "type": "endpoint",
+        "name": "well-known",
+        "source": "src/endpoints/well-known.endpoint.ts"
+      },
+      {
+        "type": "hook",
+        "name": "installed",
+        "source": "src/hooks/installed.hook.ts"
+      },
+      {
+        "type": "hook",
+        "name": "activation",
+        "source": "src/hooks/activation.hook.ts"
+      },
+      {
+        "type": "hook",
+        "name": "request",
+        "source": "src/hooks/request.hook.ts"
+      },
+      {
+        "type": "hook",
+        "name": "trim",
+        "source": "src/hooks/trim.hook.ts"
+      },
+      {
+        "type": "hook",
+        "name": "policy",
+        "source": "src/hooks/policy.hook.ts"
+      },
+      {
+        "type": "hook",
+        "name": "headers",
+        "source": "src/hooks/headers.hook.ts"
+      }
+    ],
+    "host": "^10.0.0"
+  },
+  "scripts": {
+    "build": "directus-extension build",
+    "dev": "directus-extension build -w",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@gated/artifact-renderers": "file:../gated/packages/artifact-renderers/gated-artifact-renderers-0.1.0.tgz",
+    "@gated/policy-engine": "file:../gated/packages/policy-engine/gated-policy-engine-0.1.0.tgz",
+    "@gated/types": "file:../gated/packages/types/gated-types-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "@directus/extensions-sdk": "^11.0.10",
+    "typescript": "^5.4.0"
+  }
+}
